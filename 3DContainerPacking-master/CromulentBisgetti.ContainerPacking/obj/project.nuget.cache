@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "SAiaitcwAgv4qSRfQPBExa026BLm734++30KdJC9sQh2idvozy8CW+Imr9GDy5pSTEF9GY/Da5zvMUU4vRfPOQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Juras Rabačauskas\\source\\repos\\OOP\\3DContainerPacking-master\\CromulentBisgetti.ContainerPacking\\CromulentBisgetti.ContainerPacking.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Juras Rabačauskas\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Juras Rabačauskas\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

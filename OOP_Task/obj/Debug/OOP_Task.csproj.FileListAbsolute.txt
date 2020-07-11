@@ -1,0 +1,17 @@
+C:\Users\Juras Rabačauskas\source\repos\OOP_Task\bin\Debug\OOP_Task.exe.config
+C:\Users\Juras Rabačauskas\source\repos\OOP_Task\bin\Debug\OOP_Task.exe
+C:\Users\Juras Rabačauskas\source\repos\OOP_Task\bin\Debug\OOP_Task.pdb
+C:\Users\Juras Rabačauskas\source\repos\OOP_Task\obj\Debug\OOP_Task.csprojAssemblyReference.cache
+C:\Users\Juras Rabačauskas\source\repos\OOP_Task\obj\Debug\OOP_Task.csproj.CoreCompileInputs.cache
+C:\Users\Juras Rabačauskas\source\repos\OOP_Task\obj\Debug\OOP_Task.exe
+C:\Users\Juras Rabačauskas\source\repos\OOP_Task\obj\Debug\OOP_Task.pdb
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\bin\Debug\OOP_Task.exe.config
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\bin\Debug\OOP_Task.exe
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\bin\Debug\OOP_Task.pdb
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\obj\Debug\OOP_Task.csprojAssemblyReference.cache
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\obj\Debug\OOP_Task.csproj.CoreCompileInputs.cache
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\obj\Debug\OOP_Task.exe
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\obj\Debug\OOP_Task.pdb
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\bin\Debug\CromulentBisgetti.ContainerPacking.dll
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\bin\Debug\CromulentBisgetti.ContainerPacking.pdb
+C:\Users\Juras Rabačauskas\source\repos\OOP\OOP_Task\obj\Debug\OOP_Task.csproj.CopyComplete
