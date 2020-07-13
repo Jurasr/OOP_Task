@@ -5,105 +5,113 @@ using System.Reflection;
 
 namespace OOP_Task.Entities
 {
-    class Customer: Entity
+    public class Customer: Entity, IAddress
     {
-        private string name;
-        public string Name 
-        { 
-            get { return name; } 
+        #region Public Properties
+        #region Name
+        private string _Name;
+        public string Name
+        {
+            get { return _Name; }
             set
             {
                 if (value.Length < 5)
                 {
-                    throw new ArgumentException("Customer name should be atleast 5 characters long.");
+                    throw new ArgumentOutOfRangeException("Customer name should be atleast 5 characters long.");
                 }
+                _Name = value;
             }
         }
+        #endregion
 
-        private string surname;
+        #region Surname
+        private string _Surname;
         public string Surname
         {
-            get { return surname; }
+            get { return _Surname; }
             set
             {
                 if (value.Length < 5)
                 {
-                    throw new ArgumentException("Customer name should be atleast 5 characters long.");
+                    throw new ArgumentOutOfRangeException("Customer name should be atleast 5 characters long.");
                 }
+                _Surname = value;
             }
         }
+        #endregion
 
-        private string addressCountry;
+        #region Address Country
+        private string _AddressCountry;
         public string AddressCountry
         {
-            get { return addressCountry; }
+            get { return _AddressCountry; }
             set
             {
                 if (value.Length < 5)
                 {
-                    throw new ArgumentException("Customer address country should be atleast 5 characters long.");
+                    throw new ArgumentOutOfRangeException("Customer address country should be atleast 5 characters long.");
                 }
+                _AddressCountry = value;
             }
         }
+        #endregion
 
-        private string addressCity;
+        #region Address City
+        private string _AddressCity;
         public string AddressCity
         {
-            get { return addressCity; }
+            get { return _AddressCity; }
             set
             {
                 if (value.Length < 5)
                 {
-                    throw new ArgumentException("Customer address city should be atleast 5 characters long.");
+                    throw new ArgumentOutOfRangeException("Customer address city should be atleast 5 characters long.");
                 }
+                _AddressCity = value;
             }
         }
+        #endregion
 
-        private string addressStreet;
-        public string AddressStreet 
-        { 
-            get { return addressStreet; } 
+        #region Address Street
+        private string _AddressStreet;
+        public string AddressStreet
+        {
+            get { return _AddressStreet; }
             set
             {
                 if (value.Length < 5)
                 {
-                    throw new ArgumentException("Customer address street should be atleast 5 characters long.");
+                    throw new ArgumentOutOfRangeException("Customer address street should be atleast 5 characters long.");
                 }
+                _AddressStreet = value;
             }
         }
+        #endregion
 
-        private int addressStreetNumber;
+        #region Address Street Number
+        private int _AddressStreetNumber;
         public int AddressStreetNumber
         {
-            get { return addressStreetNumber; }
+            get { return _AddressStreetNumber; }
             set
             {
-                if (value == 0)
+                if (value <= 0)
                 {
-                    throw new ArgumentException("Customer address street nummber cannot be 0.");
+                    throw new ArgumentOutOfRangeException("Customer address street nummber cannot be 0.");
                 }
+                _AddressStreetNumber = value;
             }
 
         }
+        #endregion
+        #endregion
 
-        private int addressFlatNumber;
-        public int AddressFlatNumber
-        {
-            get { return addressStreetNumber; }
-            set
-            {
-                if (value == 0)
-                {
-                    throw new ArgumentException("Customer address flat nummber cannot be 0.");
-                }
-            }
-        }
-
+        #region Constructors 
         public Customer() { }
 
         public Customer(Dictionary<string, dynamic> propValues, List<PropertyInfo> propInfos) : base(propValues, propInfos) { }
 
-        public Customer(int id, string name, string surname, string addressCountry, string addressCity, string addressStreet, int addressStreetNumber, int addressFlatNumber): base(id)
+        public Customer(int id, string name, string surname, string addressCountry, string addressCity, string addressStreet, int addressStreetNumber): base(id)
         {
             Name = name;
             Surname = surname;
@@ -111,10 +119,9 @@ namespace OOP_Task.Entities
             AddressCity = addressCity;
             AddressStreet = addressStreet;
             AddressStreetNumber = addressStreetNumber;
-            AddressFlatNumber = addressFlatNumber;
         }
 
-        public Customer(string name, string surname, string addressCountry, string addressCity, string addressStreet, int addressStreetNumber, int addressFlatNumber)
+        public Customer(string name, string surname, string addressCountry, string addressCity, string addressStreet, int addressStreetNumber)
         {
             Name = name;
             Surname = surname;
@@ -122,7 +129,7 @@ namespace OOP_Task.Entities
             AddressCity = addressCity;
             AddressStreet = addressStreet;
             AddressStreetNumber = addressStreetNumber;
-            AddressFlatNumber = addressFlatNumber;
         }
+        #endregion
     }
 }

@@ -5,16 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using OOP_Task.Entities;
-using System.ComponentModel;
-using System.Collections;
 
 namespace OOP_Task.Collections
 {
-    class FileCollection<TEntity> where TEntity : Entity
+    public class FileCollection<TEntity> where TEntity : Entity
     {
         private string FileName = typeof(TEntity).Name.ToLower() + ".csv";
 
-        private List<TEntity> CollectionItems = new List<TEntity>();
+        private List<TEntity> Items = new List<TEntity>();
 
         private List<PropertyInfo> Properties;
 
@@ -36,12 +34,12 @@ namespace OOP_Task.Collections
 
         public List<TEntity> GetAll()
         {
-            return CollectionItems;
+            return Items;
         }
 
         public TEntity GetOne(int id)
         {
-            TEntity item = CollectionItems.Find(x => x.Id == id);
+            TEntity item = Items.Find(x => x.Id == id);
 
             if (item == null)
             {
@@ -62,14 +60,14 @@ namespace OOP_Task.Collections
                 throw new ArgumentException($"{typeof(TEntity).Name} with ID of {newItem.Id} is already taken");
             }
 
-            CollectionItems.Add(newItem);
+            Items.Add(newItem);
 
             WriteData();
         }
 
         private bool IsIdAvailable(int id)
         {
-            TEntity item = CollectionItems.Find(x => x.Id == id);
+            TEntity item = Items.Find(x => x.Id == id);
 
             if (item == null)
             {
@@ -83,7 +81,7 @@ namespace OOP_Task.Collections
         {
             int id = 0;
 
-            id = CollectionItems.Max(x => x.Id) + 1;
+            id = Items.Max(x => x.Id) + 1;
 
             return id;
         }
@@ -92,7 +90,7 @@ namespace OOP_Task.Collections
         {
             TEntity item = GetOne(id);
 
-            CollectionItems.RemoveAll(x => x == item);
+            Items.RemoveAll(x => x == item);
 
             WriteData();
         }
@@ -101,7 +99,7 @@ namespace OOP_Task.Collections
         {
             TEntity item = GetOne(updatedItem.Id);
 
-            CollectionItems[CollectionItems.FindIndex(x => x.Id.Equals(updatedItem.Id))] = updatedItem;
+            Items[Items.FindIndex(x => x.Id.Equals(updatedItem.Id))] = updatedItem;
 
             WriteData();
         }
@@ -114,7 +112,7 @@ namespace OOP_Task.Collections
 
                 while ((line = collectionFile.ReadLine()) != null)
                 {
-                    CollectionItems.Add(ParseFromFile(line));
+                    Items.Add(ParseFromFile(line));
                 }
             }
         }
@@ -123,7 +121,7 @@ namespace OOP_Task.Collections
         {
             using (StreamWriter writer = new StreamWriter(FileName, false))
             {
-                foreach (TEntity item in CollectionItems)
+                foreach (TEntity item in Items)
                 {
                     writer.WriteLine(item.FormatToFile(Properties));
                 }
@@ -150,7 +148,7 @@ namespace OOP_Task.Collections
             return CreateInstance(parsedProps);
         }
 
-        List<PropertyInfo> GetEntityProperties(IEntity instance = null)
+        public List<PropertyInfo> GetEntityProperties(IEntity instance = null)
         {
             List<PropertyInfo> props = typeof(IEntity).GetProperties().ToList();
 

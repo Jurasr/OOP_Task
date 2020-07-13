@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,8 +50,11 @@
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Base\Entity.cs" />
     <Compile Include="Entities\Package.cs" />
+    <Compile Include="Entities\PostPoint.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Shipment.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Interfaces\IAddress.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,5 +68,6 @@
       <Name>CromulentBisgetti.ContainerPacking</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

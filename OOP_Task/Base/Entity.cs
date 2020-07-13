@@ -1,13 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using OOP_Task.Interfaces;
 
 namespace OOP_Task.Entities
 {
-    class Entity : IEntity
+    public class Entity : IEntity
     {
-        public int Id { get; set; }
+        #region Properties
 
+        #region Id
+        private int _Id { get; set; }
+        public int Id
+        {
+            get { return _Id; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Entity ID must be greater than 0.");
+                }
+                _Id = value;
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region Constructors
         public Entity() { }
 
         public Entity(int id)
@@ -22,7 +42,11 @@ namespace OOP_Task.Entities
                 prop.SetValue(this, propValues[prop.Name]);
             }
         }
+        #endregion
 
+        #region Methods
+
+        #region Format To File
         public string FormatToFile(List<PropertyInfo> propInfos)
         {
             string output = "";
@@ -39,7 +63,9 @@ namespace OOP_Task.Entities
 
             return output;
         }
+        #endregion
 
+        #region Print Properties
         public void PrintProperties(List<PropertyInfo> propInfos)
         {
             foreach (PropertyInfo propinfo in propInfos)
@@ -47,5 +73,8 @@ namespace OOP_Task.Entities
                 System.Console.WriteLine($"{propinfo.Name}: {propinfo.GetValue(this)}");
             }
         }
+        #endregion
+
+        #endregion
     }
 }

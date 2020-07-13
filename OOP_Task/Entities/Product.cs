@@ -1,110 +1,129 @@
-﻿using CromulentBisgetti.ContainerPacking;
-using CromulentBisgetti.ContainerPacking.Algorithms;
-using CromulentBisgetti.ContainerPacking.Entities;
-using Microsoft.SqlServer.Server;
-using OOP_Task.Collections;
-using OOP_Task.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using OOP_Task.Collections;
+using OOP_Task.Helpers;
 
 namespace OOP_Task.Entities
 {
-    class Product : Entity
+    public class Product : Entity
     {
-        private List<Package> Packages = new FileCollection<Package>().GetAll();
+        #region Private Properties
+        private List<Package> _Packages = new FileCollection<Package>().GetAll();
+        #endregion
 
-        private string title;
+        #region Public Properties
+        #region Title
+        private string _Title;
         public string Title 
         { 
-            get { return title; }
+            get { return _Title; }
             set
             {
                 if (value.Length < 5)
                 {
                     throw new ArgumentOutOfRangeException("Product title should be atleast 5 characters long.");
                 }
-                title = value;
+                _Title = value;
             }
         }
+        #endregion
 
-        private string description;
+        #region Description
+        private string _Description;
         public string Description 
         { 
-            get { return description; }
+            get { return _Description; }
             set
             {
                 if (value.Length < 10)
                 {
                     throw new ArgumentOutOfRangeException("Product description should be atleast 10 characters long.");
                 }
-                title = value;
+                _Description = value;
             }
         }
+        #endregion
 
-        private double price;
+        #region Price
+        private double _Price;
         public double Price 
         { 
-            get { return price; } 
+            get { return _Price; } 
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("Product price should be higher than 0.");
                 }
+                _Price = value;
             }
         }
+        #endregion
 
-        private decimal width;
-        public decimal Width 
+        #region Width
+        private double _Width { get; set; }
+        public double Width 
         { 
-            get { return width; } 
+            get { return _Width; } 
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("Product width should be higher than 0.");
                 }
+                _Width = value;
             }
         }
+        #endregion
 
-        private decimal length;
-        public decimal Length
+        #region Length
+        private double _Length;
+        public double Length
         {
-            get { return length; }
+            get { return _Length; }
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("Product length should be higher than 0.");
                 }
+                _Length = value;
             }
         }
+        #endregion
 
-        private decimal height;
-        public decimal Height
+        #region Height
+        private double _Height;
+        public double Height
         {
-            get { return height; }
+            get { return _Height; }
             set
             {
                 if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("Product height should be higher than 0.");
                 }
+                _Height = value;
             }
         }
+        #endregion
+        #endregion
 
+        #region Constructors
         public Product() { }
 
         public Product(Dictionary<string, dynamic> propValues, List<PropertyInfo> propInfos) : base(propValues, propInfos) 
         {
-            if (PackageHelpers.ValidateProductSize(this, Packages) == false)
+            
+            if (Utilities.ValidateProductSize(this, _Packages) == false)
             {
-                throw new ArgumentException();
+                throw new ArgumentOutOfRangeException("Product size dimensions are too big to add to a package.");
             }
+            
         }
 
-        public Product(int id, string title, string description, double price, decimal width, decimal length, decimal height): base(id)
+        public Product(int id, string title, string description, double price, double width, double length, double height): base(id)
         {
             Title = title;
             Description = description;
@@ -113,13 +132,14 @@ namespace OOP_Task.Entities
             Length = length;
             Height = height;
 
-            if (PackageHelpers.ValidateProductSize(this, Packages) == false)
+            if (Utilities.ValidateProductSize(this, _Packages) == false)
             {
-                throw new ArgumentException();
+                throw new ArgumentOutOfRangeException("Product size dimensions are too big to add to a package.");
             }
+           
         }
 
-        public Product(string title, string description, double price, decimal width, decimal length, decimal height)
+        public Product(string title, string description, double price, double width, double length, double height)
         {
             Title = title;
             Description = description;
@@ -128,10 +148,11 @@ namespace OOP_Task.Entities
             Length = length;
             Height = height;
 
-            if (PackageHelpers.ValidateProductSize(this, Packages) == false)
+            if (Utilities.ValidateProductSize(this, _Packages) == false)
             {
-                throw new ArgumentException();
+                throw new ArgumentOutOfRangeException("Product size dimensions are too big to add to a package.");
             }
         }
+        #endregion
     }
 }

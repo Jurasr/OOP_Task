@@ -1,81 +1,90 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
-using CromulentBisgetti.ContainerPacking;
-using CromulentBisgetti.ContainerPacking.Entities;
-using CromulentBisgetti.ContainerPacking.Algorithms;
 
 namespace OOP_Task.Entities
 {
-    class Package : Entity
+    public class Package : Entity
     {
-        private char type;
-        public char Type 
+        #region Public Properties
+        #region Type
+        private string _Type;
+        public string Type 
         { 
-            get { return type; } 
+            get { return _Type; } 
+            set { _Type = value; }
+        }
+        #endregion
+
+        #region Width
+        private double _Width;
+        public double Width
+        {
+            get { return _Width; }
             set
             {
-                if (!new char[] { 'S', 'M', 'L'}.Contains(value))
+                if (value <= 0)
                 {
-                    throw new ArgumentException("Package type can only be S, M or L.")
+                    throw new ArgumentOutOfRangeException("Package width should be greater than 0.");
                 }
+                _Width = value;
             }
         }
+        #endregion
 
-        public decimal Length { get; set; }
-        public decimal Width { get; set; }
-        public decimal Height { get; set; }
+        #region Length
+        private double _Length;
+        public double Length
+        {
+            get { return _Length; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Package length should be greater than 0.");
+                }
+                _Length = value;
+            }
+        }
+        #endregion
+
+        #region Height
+        private double _Height;
+        public double Height
+        {
+            get { return _Height; }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Package height should be greater than 0.");
+                }
+                _Height = value;
+            }
+        }
+        #endregion 
+        #endregion
+
+        #region Constructors
+        public Package() { }
 
         public Package(Dictionary<string, dynamic> propValues, List<PropertyInfo> propInfos) : base(propValues, propInfos) { }
 
-        public Package(int id, char type, decimal length, decimal width, decimal height) : base(id)
+        public Package(int id, string type, double length, double width, double height) : base(id)
         {
             Type = type;
             Length = length;
             Width = width;
             Height = height;
         }
-    }
 
-    static class PackageHelpers
-    {
-        public static bool ValidateProductSize(Product product, List<Package> packages)
+        public Package(string type, double length, double width, double height)
         {
-            if (packages.Count == 0)
-            {
-                throw new ArgumentNullException();
-            }
-
-            List<Item> productsToPack = new List<Item>
-            {
-                new Item(product.Id, product.Width, product.Length, product.Height, 1)
-            };
-
-            List<int> algorithms = new List<int>();
-
-            algorithms.Add((int)AlgorithmType.EB_AFIT);
-
-            foreach (Package package in packages)
-            {
-                List<Container> containers = new List<Container>
-                {
-                    new Container(package.Id, package.Width, package.Length, package.Height)
-                };
-
-                List<ContainerPackingResult> result = PackingService.Pack(containers, productsToPack, algorithms);
-
-                List<Item> unpackedItems = result[0].AlgorithmPackingResults[0].UnpackedItems;
-
-                if (unpackedItems.Count == 0)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            Type = type;
+            Length = length;
+            Width = width;
+            Height = height;
         }
+        #endregion
     }
 }

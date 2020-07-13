@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace OOP_Task.Interfaces
 {
-    interface IEntity
+    public interface IEntity
     {
         int Id { get; set; }
         
